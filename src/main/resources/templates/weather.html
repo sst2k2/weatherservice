@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Weather Forecast</title>
+
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body style="background-color: #202326">
+<div class="container-fluid">
+<div class="container-fluid" style="background-color: #9fcdff;margin-top: 1rem;">
+	<div class="row">
+		<div class="col-md-12">
+		<h4 class="text-center font-weight-bolder" style="color: #202326;padding-top: 1rem;padding-bottom: 1rem">Weather Today</h4>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+<div class="card-deck" style="margin-top: 1rem;color: #202326">
+<div class="card" style="margin-left: 5px;margin-right: 5px;background-color: #9fcdff;" th:each="w:${weather}">
+	<div class="card-body">
+		<h5 class="card-title font-weight-bold text-center" th:text="${w.address}"></h5>
+		<h6 class="card-subtitle text-center" th:text="${w.timezone}" style="margin-bottom: 20px"></h6>
+		<ul class="list-group list-group-flush list-group-item-info">
+
+		<li class="list-group-item" style="background-color: #9fcdff;">
+			<div class="row">
+				<div class="col-md-4"><img class="img-fluid"  th:src="@{/icons/temperature-high-solid.svg}"></div>
+				<div class="col-md-8 float-md-right" th:text="${w.temperature + '&#8457;'}"></div>
+			</div>
+		</li>
+		<li class="list-group-item" style="background-color: #9fcdff;">
+			<div class="row">
+				<div class="col-md-4"><img class="img-fluid" th:src="@{/icons/tint-solid.svg}"></div>
+				<div class="col-md-8 float-md-right s" th:text="${w.dewPoint + '&#8457;'}"></div>
+			</div>
+		</li>
+		<li class="list-group-item" style="background-color: #9fcdff;">
+			<div class="row">
+				<div class="col-md-4"><img class="img-fluid" th:src="@{/icons/cloud-rain-solid.svg}"></div>
+				<div class="col-md-8 float-md-right" th:text="${#numbers.formatDecimal(w.precipProbability, 0, 'COMMA', 0, 'POINT') + '%'}"></div>
+			</div>
+		</li>
+		<li class="list-group-item" style="background-color: #9fcdff;">
+			<div class="row">
+				<div class="col-md-4"><img class="img-fluid" th:src="@{/icons/wind-solid.svg}"></div>
+				<p class="col-md-8" th:text="${w.windSpeed + ' mph'}"></p>
+			</div>
+		</li>
+		<li class="list-group-item" style="background-color: #9fcdff;">
+			<div class="row">
+				<p class="col-md-12 text-center" th:text="${w.summary}"></p>
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+</div>
+</div>
+<div class="container-fluid" style="background-color: #9fcdff;margin-top: 1rem;">
+	<div class="row align-content-center" style="padding:0.5rem">
+		<div class="col-md-3">
+			<div class="row">
+				<img class="col-md-2"  th:src="@{/icons/temperature-high-solid.svg}">
+				<p class="col-md-10" style="color: #0c5460;margin-top: 1rem">Temperature</p>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row">
+				<img class="img-fluid col-md-2"  th:src="@{/icons/tint-solid.svg}">
+				<p class="col-md-10" style="color: #0c5460;margin-top: 1rem">Dew Point</p>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row">
+				<img class="img-fluid col-md-2"  th:src="@{/icons/cloud-rain-solid.svg}">
+				<p class="col-md-10" style="color: #0c5460;margin-top: 1rem">Precipitation Probability</p>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row">
+				<img class="img-fluid col-md-2"  th:src="@{/icons/wind-solid.svg}">
+				<p class="col-md-10" style="color: #0c5460;margin-top: 1rem">Wind Speed</p>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<script type="text/javascript" th:src="@{/js/bootstrap.js}"/>
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+</body>
+</html>
